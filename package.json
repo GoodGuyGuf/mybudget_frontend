@@ -1,6 +1,7 @@
 {
   "name": "mybudget_frontend",
   "version": "1.0.0",
+  "private": true,
   "description": "MyBudget is a simple single page application that lets a user sign up and keep track of their budgets and expenses.",
   "main": "index.js",
   "scripts": {
