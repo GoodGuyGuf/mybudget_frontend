@@ -1,0 +1,23 @@
+{
+  "name": "mybudget_frontend",
+  "version": "1.0.0",
+  "description": "MyBudget is a simple single page application that lets a user sign up and keep track of their budgets and expenses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodGuyGuf/mybudget_frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodGuyGuf/mybudget_frontend/issues"
+  },
+  "homepage": "https://github.com/GoodGuyGuf/mybudget_frontend#readme",
+  "devDependencies": {
+    "mocha": "^8.2.0"
+  }
+}
