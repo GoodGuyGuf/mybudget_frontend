@@ -1,14 +1,15 @@
+import Header from "./Views/Header/Header.js";
 import Login from "./Views/Login/Login.js";
+import Signup from "./Views/Signup/Signup.js";
 
 export default class App {
   constructor(){
-    this.header = document.createElement("header");
+    this.header = new Header;
 
-    this.header.innerHTML = `
-      <h1 id="Logo">MyBudget</h1>
-    `
-    document.body.appendChild(this.header);
-    
-    new Login;
+    if (window.location.pathname === "/login"){
+      this.login = new Login;
+    } else if (window.location.pathname === "/signup"){
+      this.signup = new Signup;
+    }
   }
 }

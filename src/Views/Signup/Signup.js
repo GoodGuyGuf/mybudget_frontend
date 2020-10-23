@@ -1,9 +1,9 @@
-class Signup {
+export default class Signup {
     constructor(){
 
-      this.section = document.createElement("section");
-      this.section.id="SignUp";
-      this.section.innerHTML = `
+      this.main = document.createElement("main");
+      this.main.id="SignUp";
+      this.main.innerHTML = `
         <form id='signupForm' action='http://localhost:3000/users' method='POST'>
           <div class='signupFlex'>
             <h2>Sign up</h2>
@@ -25,13 +25,13 @@ class Signup {
         </form>
         `;
 
-      document.body.appendChild(this.section);
+      document.body.appendChild(this.main);
 
       this.loginLinkContainer = document.createElement("section");
       this.loginLinkContainer.id = 'login'
       this.loginLinkContainer.innerHTML = `
           <h3>Already Have An Account?</h3>
-          <button id='loginButton'>Log In</button>
+          <p><a href="/login" id='loginButton'>Log In</a></p>
       </section>`;
 
       document.body.appendChild(this.loginLinkContainer)
