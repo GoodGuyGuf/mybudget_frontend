@@ -43,7 +43,11 @@ module.exports = {
     rules: [{
       test: /\.(js|jsx)$/,
       include: [path.resolve(__dirname, 'src')],
-      loader: 'babel-loader'
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-class-properties']
+      }
     }]
   },
   devtool: 'inline-source-map',
