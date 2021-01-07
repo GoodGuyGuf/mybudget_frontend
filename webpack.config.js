@@ -1,75 +1,46 @@
-const path = require('path');
-const webpack = require('webpack');
-
-
-
-
-/*
- * SplitChunksPlugin is enabled by default and replaced
- * deprecated CommonsChunkPlugin. It automatically identifies modules which
- * should be splitted of chunk by heuristics using module duplication count and
- * module category (i. e. node_modules). And splits the chunks…
- *
- * It is safe to remove "splitChunks" from the generated configuration
- * and was added as an educational example.
- *
- * https://webpack.js.org/plugins/split-chunks-plugin/
- *
- */
-
-/*
- * We've enabled TerserPlugin for you! This minifies your app
- * in order to load faster and run less javascript.
- *
- * https://github.com/webpack-contrib/terser-webpack-plugin
- *
- */
-
-const TerserPlugin = require('terser-webpack-plugin');
-
-
-
+const path = require("path");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'public')
-  },
-
-  plugins: [new webpack.ProgressPlugin()],
-
-  module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      include: [path.resolve(__dirname, 'src')],
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-        plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-class-properties']
-      }
-    }]
+    path: path.resolve(__dirname, './public'),
+    filename: 'main.bundle.js',
+    publicPath: '/'
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './public',
-    historyApiFallback: true
+    historyApiFallback: true,
+    https: false,
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8000
+
   },
-  optimization: {
-    minimizer: [new TerserPlugin()],
-
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          priority: -10,
-          test: /[\\/]node_modules[\\/]/
+  module: {
+    rules: [
+      { 
+        test: /\.(js)$/, 
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/plugin-proposal-object-rest-spread',
+              '@babel/plugin-proposal-class-properties'
+            ]
+          }
         }
-      },
-
-      chunks: 'async',
-      minChunks: 1,
-      minSize: 30000,
-      name: false
-    }
-  }
-}
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "MyBudget",
+      filename: 'index.html'
+    })
+  ]
+};
