@@ -1,3 +1,3 @@
-import App from './App';
+import MyBudgetApp from './MyBudgetApp';
 
-new App;
+new MyBudgetApp;
